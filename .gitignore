@@ -1,0 +1,30 @@
+# Dependencies
+node_modules/
+
+# Local environment and credentials
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+credentials.json
+service-account*.json
+service_account*.json
+
+# Runtime output and generated artifacts
+coverage/
+.nyc_output/
+dist/
+build/
+tmp/
+temp/
+*.log
+*.zip
+
+# OS and editor files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
