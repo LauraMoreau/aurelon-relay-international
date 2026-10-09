@@ -1,48 +1,41 @@
 # Aurelon Systems — Relay International Engineering Lab
 
-A small **real, forkable Node.js repository** for the EADL technical-leadership simulation. Students can run the browser dashboard, examine event traces, change source code, write tests, commit work, and compare evidence with professional claims.
+A small, forkable Node.js repository for the EADL technical-leadership simulation. Students can run a local browser dashboard, inspect event traces, change one controlled input at a time, write tests, and compare observed evidence with professional claims.
 
-This is a *simulation*, not a production notification system. No external API, credentials, database or paid cloud service is required.
+Relay is a deterministic training simulation, not a production notification system. It requires no external API, credentials, database, or paid cloud service.
 
-## Start
+## Start on Windows
 
 Requirements: Node.js 20+.
 
-```bash
-npm start
+In PowerShell, open the repository root and run:
+
+```powershell
+npm.cmd install
+npm.cmd test
+npm.cmd start
 ```
 
-Open http://localhost:3000 in a browser. Run automated checks:
+Open [http://localhost:3000](http://localhost:3000). The application opens in **Operations**. Run the UK pilot, select a work order, and open **Trace a notification** to inspect the recorded sequence. The **Engineering lab** provides controlled inputs and JSON evidence export.
 
-```bash
-npm test
-```
+If PowerShell blocks `npm.ps1`, use the `.cmd` commands above. Do not use VS Code Live Server: Relay needs the Node server. If port 3000 is unavailable, close the process using it or record the error and continue with the supplied scenario evidence. Never put credentials or personal information in a fork.
 
-Fork this repository to your GitHub account once the instructor publishes it. Clone your fork or download the code as ZIP. Never put real credentials in your fork.
+## Explore the repository
 
-## Explore
+- `src/relay.js` — deterministic simulation logic and configuration validation
+- `src/server.js` — local static server and `/api/simulate` endpoint
+- `public/` — Operations, Trace, and Engineering Lab views
+- `tests/` — runnable tests to inspect, challenge, and extend
+- `scenarios/episode-01.json` — first investigation parameters and questions
+- `scenarios/episode-02.json` — retry-policy investigation parameters and questions
+- `docs/ENGINEERING-NOTES.md` — simulator boundaries and future engineering work
 
-- `src/relay.js` — deterministic simulated partner routing, retries, acknowledgements and device displays
-- `src/server.js` — local static server and `/api/simulate`
-- `public/` — interactive engineering dashboard
-- `tests/` — tests to run, challenge and extend
-- `scenarios/episode-01.json` — first investigation
-- `scenarios/episode-02.json` — contradictory claims investigation
-- `docs/ENGINEERING-NOTES.md` — constraints and future episodes
-
-## Important distinctions
-
-1. A work-order change entering Relay is not the same event as partner acknowledgement.
-2. Partner acknowledgement is not device receipt or user display.
-3. The current implementation is deterministic educational code, not measured production telemetry.
-4. The starting configuration has an explicitly `null` partner-specific retry limit and a fallback of five attempts. This is not proof that production partner limits are satisfied.
+The dashboard exposes named events such as `work_order_confirmed`, `partner_accepted`, `partner_acknowledged`, and `device_displayed`. Treat each event as a separate observation. A trace can show the order and elapsed time of recorded events; it cannot by itself establish a production deployment, an external partner contract, or a human read receipt.
 
 ## Working agreement
 
-Write clear commits, test before claims, justify changes, and retain a short record of known evidence and unknowns. You may explore and modify this fork: it is **not** the canonical Aurelon production system.
+Change one setting at a time, write down a prediction, run a baseline before a variant, keep the exported JSON beside its inputs, and cite the file or trace that supports each claim. The repository is a safe engineering sandbox rather than the canonical Aurelon production system. Keep implementation limitations visible and use the ENKI lesson for the scenario-specific decision and submission.
 
-## New guided interface
+## Safety and scope
 
-Open http://localhost:3000 after `npm.cmd start` in PowerShell. The app now opens in **Operations**, not the experiment parameters. Run the UK pilot, select a work order, and open **Trace a notification** to inspect its event sequence. The **Engineering lab** contains the original adjustable simulation and JSON evidence export.
-
-This is a training simulation. Partner acknowledgements and device-display events are modelled, not collected from real hardware. Regional routing and multiple partner implementations remain future engineering tasks. Existing tests run with `npm.cmd test`.
+No secrets, personal data, paid-service credentials, live partner connections, or real customer telemetry are used. Regional routing, partner limits, delivery behaviour, and retry settings are modelled within the selected synthetic run. Use the source, tests, fixtures, and exported results to determine what a particular run supports and what still needs another source.

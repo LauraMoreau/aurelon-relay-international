@@ -3,9 +3,9 @@ let last = null;
 const TECHNICIANS = ['Alex Morgan', 'Camille Dubois', 'Jordan Lee', 'Morgan Ellis', 'Sam Patel', 'Taylor Reed', 'Robin Clarke', 'Chris Martin'];
 const PRESETS = {
   baseline: {label: 'Episode 1 · UK pilot baseline', requests: 8, rateLimit: 3, fallbackMaxAttempts: 5, partnerMaxAttempts: null, deviceDropRate: 0},
-  'delivery-gap': {label: 'Episode 1 · acknowledgement / display gap', requests: 8, rateLimit: 3, fallbackMaxAttempts: 5, partnerMaxAttempts: null, deviceDropRate: 0.25},
-  'retry-pressure': {label: 'Episode 2 · retry pressure', requests: 12, rateLimit: 1, fallbackMaxAttempts: 5, partnerMaxAttempts: null, deviceDropRate: 0},
-  'partner-override': {label: 'Episode 2 · explicit partner override', requests: 8, rateLimit: 3, fallbackMaxAttempts: 5, partnerMaxAttempts: 2, deviceDropRate: 0}
+  'delivery-gap': {label: 'Episode 1 · controlled notification variant', requests: 8, rateLimit: 3, fallbackMaxAttempts: 5, partnerMaxAttempts: null, deviceDropRate: 0.25},
+  'retry-pressure': {label: 'Episode 2 · retry-pressure run', requests: 12, rateLimit: 1, fallbackMaxAttempts: 5, partnerMaxAttempts: null, deviceDropRate: 0},
+  'partner-override': {label: 'Episode 2 · partner-limit run', requests: 8, rateLimit: 3, fallbackMaxAttempts: 5, partnerMaxAttempts: 2, deviceDropRate: 0}
 };
 const esc = (value) => String(value ?? '').replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;');
 
